@@ -60,12 +60,25 @@ router.delete('/:id', (req, res) => {
 			res.status(500).json({ error: 'The post could not be removed' });
 		});
 });
+router.put('/:id', (req, res) => {
+	const postToUpdate = req.body;
+	if (!postToUpdate.hasOwnProperty('title') || !postToUpdate.hasOwnProperty('contents')) {
+		res.status(400).json({ errorMessage: 'Please provide title and contents for the post.' });
+	}
+	db
+		.update(req.params.id, postToUpdate)
+		.then((numOfUpdatedPosts) => {
+			if (!numOfUpdatedPosts) {
+				res.status(404).json({ message: 'The post with the specified ID does not exist.' });
+			} else {
+				db.findById(req.params.id).then((updatedPost) => {
+					res.status(200).json(updatedPost);
+				});
+			}
+		})
+		.catch((err) => {
+			res.status(500).json({ error: 'The post information could not be modified.' });
+		});
+});
 
 module.exports = router;
-
-/*
-
-
-
-
-*/
