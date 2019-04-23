@@ -13,7 +13,6 @@ class App extends Component {
 		axios
 			.get('http://localhost:4000/api/posts/')
 			.then((res) => {
-				console.log('REACT GET RES IS ', res.data);
 				this.setState({ posts: res.data });
 			})
 			.catch((err) => {
@@ -22,7 +21,6 @@ class App extends Component {
 	}
 
 	render() {
-		console.log(this.state.posts);
 		return (
 			<div className="App">
 				<h1>List of Posts</h1>
