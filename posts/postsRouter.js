@@ -20,7 +20,6 @@ router.get('/:id', (req, res) => {
 	db
 		.findById(req.params.id)
 		.then((post) => {
-			console.log('GET by ID ', post);
 			if (post.length === 0) {
 				res.status(404).json({ message: 'The post with the specified ID does not exist.' });
 			} else {
@@ -47,9 +46,25 @@ router.post('/', (req, res) => {
 		});
 });
 
+router.delete('/:id', (req, res) => {
+	db
+		.remove(req.params.id)
+		.then((numOfPostDeleted) => {
+			if (!numOfPostDeleted) {
+				res.status(404).json({ message: 'The post with the specified ID does not exist.' });
+			} else {
+				res.status(204).end();
+			}
+		})
+		.catch((err) => {
+			res.status(500).json({ error: 'The post could not be removed' });
+		});
+});
+
 module.exports = router;
 
 /*
+
 
 
 
