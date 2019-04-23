@@ -32,9 +32,25 @@ router.get('/:id', (req, res) => {
 		});
 });
 
+router.post('/', (req, res) => {
+	const newPost = req.body;
+	if (!newPost.hasOwnProperty('title') || !newPost.hasOwnProperty('contents')) {
+		res.status(400).json({ errorMessage: 'Please provide title and contents for the post.' });
+	}
+	db
+		.insert(newPost)
+		.then((idOfNewPost) => {
+			res.status(201).json(idOfNewPost);
+		})
+		.catch((err) => {
+			res.status(500).json({ error: 'There was an error while saving the post to the database' });
+		});
+});
+
 module.exports = router;
 
-/* When the client makes a GET request to /api/posts:
+/*
+
 
 
 */
