@@ -11,7 +11,7 @@ class App extends Component {
 	}
 	componentDidMount() {
 		axios
-			.get('http://localhost:4000/api/posts')
+			.get('https://posts-app-web18.herokuapp.com/api/posts')
 			.then((res) => {
 				this.setState({ posts: res.data });
 			})
