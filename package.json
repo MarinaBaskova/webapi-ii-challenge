@@ -7,7 +7,7 @@
 	"scripts": {
 		"server": "nodemon index.js",
 		"start": "node index.js",
-		"heroku-postbuild": "cd client && yarn build",
+		"heroku-postbuild": "cd client && yarn install && yarn build ",
 		"test": "concurrently --kill-others-on-fail \"yarn server\" \"serve client/build\""
 	},
 	"dependencies": {
