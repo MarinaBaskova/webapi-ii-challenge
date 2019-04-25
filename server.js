@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const server = express();
 const cors = require('cors');
 
@@ -6,6 +7,7 @@ const cors = require('cors');
 
 const postsRouter = require('./posts/postsRouter.js');
 
+server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
