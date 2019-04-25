@@ -10,7 +10,7 @@ server.use(express.json());
 server.use(cors());
 
 server.get('/', (req, res) => {
-	res.send('<h2>Posts API</h2>');
+	res.status(200).json({ message: process.env.SW });
 });
 
 // apply middleware for using posts router
