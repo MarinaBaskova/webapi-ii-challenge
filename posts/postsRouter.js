@@ -60,6 +60,7 @@ router.delete('/:id', (req, res) => {
 			res.status(500).json({ error: 'The post could not be removed' });
 		});
 });
+
 router.put('/:id', (req, res) => {
 	const postToUpdate = req.body;
 	if (!postToUpdate.hasOwnProperty('title') || !postToUpdate.hasOwnProperty('contents')) {
